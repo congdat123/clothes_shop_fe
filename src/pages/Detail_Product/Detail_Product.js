@@ -26,7 +26,7 @@ function Detail_Product() {
             .get()
             .then((response) => {
                 setData(response.data);
-                // console.log(response.data);
+                console.log(response.data);
                 setStr(response.data.description.split('.'));
             });
     }, []);

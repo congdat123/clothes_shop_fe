@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { MenuItem } from '../Sidebar/Menu';
 import { useEffect } from 'react';
 import Button from '~/components/Button';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
@@ -36,6 +37,7 @@ function Header() {
     const [currentUser, setCurrentUser] = useState(false);
     const [userName, setUserName] = useState();
     const [data, setData] = useState();
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         const storedData = localStorage.getItem('username');
@@ -48,6 +50,18 @@ function Header() {
             setCurrentUser(true);
         }
     }, []);
+
+    useEffect(() => {
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/Account/viaUserName?UserName=${userName}`,
+            })
+            .get()
+            .then((response) => {
+                setItems(response.data);
+            });
+    }, [userName]);
+    console.log('AAAAAAAAA' + items);
 
     // Handle login
     const handleMenuChange = (menuItem) => {
@@ -65,7 +79,6 @@ function Header() {
             setCurrentUser(false);
         }
     };
-    useEffect(() => {});
 
     const userMenu = [
         {
@@ -127,13 +140,11 @@ function Header() {
                     )}
                     {currentUser ? (
                         <>
-                            <Menu items={userMenu}>
-                                <Image
-                                    src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/cf7409263fa1f148aca1395e65c12fa7~c5_100x100.jpeg?x-expires=1666083600&x-signature=6N13sZsEs9kvZoei5bx2HQLK7Iw%3D"
-                                    className={cx('user-avatar')}
-                                    alt="Nguyen Van A"
-                                />
-                            </Menu>
+                            {items.map((item) => (
+                                <Menu items={userMenu}>
+                                    <Image src={item.avatar} className={cx('user-avatar')} alt="Nguyen Van A" />
+                                </Menu>
+                            ))}
                         </>
                     ) : (
                         <Menu items={MENU_ITEMS}>

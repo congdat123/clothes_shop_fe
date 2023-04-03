@@ -47,6 +47,8 @@ function Cart() {
         }
     };
 
+    const handleBuyItem = () => {};
+
     return (
         <div>
             {currentUser ? (
@@ -82,8 +84,12 @@ function Cart() {
                         ))}
                     </div>
                     <div className={cx('item-total')}>
-                        Tổng tiền
-                        <div>{total}đ</div>
+                        <div className={cx('item-total-name')}>Tổng tiền</div>
+                        <div className={cx('item-total-price')}>{total}đ</div>
+                        <div className={cx('item-total-action')} onClick={handleBuyItem}>
+                            {' '}
+                            Mua
+                        </div>
                     </div>
                 </div>
             ) : (

@@ -147,7 +147,7 @@ function EditProfile() {
                 </div>
                 <div className={cx('form-edit')}>
                     <div className={cx('name')}>
-                        <label>User Name:</label>
+                        <label>Address:</label>
                     </div>
                     <div>
                         <input
@@ -161,7 +161,7 @@ function EditProfile() {
                 </div>
                 <div className={cx('form-edit')}>
                     <div className={cx('name')}>
-                        <label>User Name:</label>
+                        <label>Avatar:</label>
                     </div>
                     <div>
                         <input
@@ -175,7 +175,7 @@ function EditProfile() {
                 </div>
                 <div className={cx('form-edit')}>
                     <div className={cx('name')}>
-                        <label>User Name:</label>
+                        <label>DayCreated:</label>
                     </div>
                     <div>
                         <input
@@ -188,7 +188,7 @@ function EditProfile() {
                     </div>
                 </div>
 
-                <button onClick={() => handleEdit(dataEdit.categoryId)} type="submit" className={cx('btn-edit')}>
+                <button onClick={() => handleEdit(dataEdit.userId)} type="submit" className={cx('btn-edit')}>
                     Edit
                 </button>
             </form>
