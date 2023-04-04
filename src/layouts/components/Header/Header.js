@@ -84,7 +84,7 @@ function Header() {
         {
             icon: <UserIcon />,
             title: 'View profile',
-            to: `/${userName}`,
+            to: `/profile/${userName}`,
         },
         {
             icon: <CircleQuestion />,
