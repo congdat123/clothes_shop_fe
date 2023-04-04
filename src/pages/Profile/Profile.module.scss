@@ -3,6 +3,7 @@
     display: flex;
     background-color: #e7e7e7;
     border-radius: 5%;
+    font-family: 'ProximaNova';
 }
 
 .info-component {
@@ -21,23 +22,59 @@
     margin-top: 20px;
     display: flex;
 }
+.info-content-img {
+    border-radius: 50%;
+}
+.info-content-component {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.info-name {
+    font-size: 4rem;
+    font-weight: 700;
+    color: lightseagreen;
+}
+.info-rank {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: seagreen;
+}
+.info-rank-current {
+    font-size: 1.8rem;
+    color: darkcyan;
+}
+.tabs {
+    background-color: #e7e7e7 !important;
+}
 
+.item-tab {
+    font-size: 1.9rem;
+    font-weight: 600;
+}
 .info-title {
-    width: 100px;
+    width: 200px;
     margin-left: 30px;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .info-content {
-    margin-left: 20px;
+    margin-left: 40px;
+    font-size: 1.4rem;
+    font-weight: 500;
 }
 
 .btn-edit {
     margin-left: 350px;
+    Button {
+        margin-bottom: 40px;
+        &:hover {
+            background-color: #e7e7e7;
+            color: burlywood;
+        }
+    }
 }
 h3 {
     display: flex;
     justify-content: center;
-}
-.info-content-img {
-    border-radius: 50%;
 }
