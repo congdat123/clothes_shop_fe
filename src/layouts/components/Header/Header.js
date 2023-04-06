@@ -38,6 +38,7 @@ function Header() {
     const [userName, setUserName] = useState();
     const [data, setData] = useState();
     const [items, setItems] = useState([]);
+    const [numberItem, setNumberItem] = useState(0);
 
     useEffect(() => {
         const storedData = localStorage.getItem('username');
@@ -61,7 +62,17 @@ function Header() {
                 setItems(response.data);
             });
     }, [userName]);
-    console.log('AAAAAAAAA' + items);
+    useEffect(() => {
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/Carts/viaUserName?UserName=${userName}`,
+            })
+            .get()
+            .then((response) => {
+                setNumberItem(response.data);
+            })
+            .catch((error) => console.error(error));
+    });
 
     // Handle login
     const handleMenuChange = (menuItem) => {
@@ -83,18 +94,18 @@ function Header() {
     const userMenu = [
         {
             icon: <UserIcon />,
-            title: 'View profile',
+            title: 'Thông tin cá nhân',
             to: `/profile/${userName}`,
         },
         {
             icon: <CircleQuestion />,
-            title: 'Feedback and help',
-            to: '/feedback',
+            title: 'Lịch sử mua hàng',
+            to: '/history/order',
         },
         {
             icon: <LogOut />,
-            title: 'Log out',
-            to: '/',
+            title: 'Đăng xuất',
+            to: '/logout',
         },
     ];
 
@@ -126,7 +137,8 @@ function Header() {
                                 <Tippy delay={(0, 200)} content="Cart" placement="bottom">
                                     <button className={cx('action-btn')}>
                                         <AiOutlineShoppingCart />
-                                        {/* <span className={cx('badge')}>12</span> */}
+                                        {/* Số lượng đơn hàng trong giỏ hàng */}
+                                        <span className={cx('badge')}>{numberItem.length}</span>
                                     </button>
                                 </Tippy>
                             </Link>
@@ -152,15 +164,6 @@ function Header() {
                                 <FontAwesomeIcon icon={faUserCircle} />
                             </button>
                         </Menu>
-                    )}
-                    {currentUser ? (
-                        <>
-                            <Button className={cx('btn-logout')} leftIcon=<LogOut /> onClick={handleLogout}>
-                                Log Out
-                            </Button>
-                        </>
-                    ) : (
-                        <p></p>
                     )}
                 </div>
             </div>

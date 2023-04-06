@@ -15,6 +15,7 @@ function Detail_Product() {
     const [data, setData] = useState([]);
     const [userName, setUserName] = useState();
     const [dataAddCart, setDataAddCart] = useState({
+        size: 28,
         quantity: '1',
     });
     const [str, setStr] = useState([]);
@@ -26,7 +27,6 @@ function Detail_Product() {
             .get()
             .then((response) => {
                 setData(response.data);
-                console.log(response.data);
                 setStr(response.data.description.split('.'));
             });
     }, []);
@@ -113,7 +113,9 @@ function Detail_Product() {
                         id="size"
                         value={dataAddCart.size}
                     >
-                        <option value="28">28</option>
+                        <option selected value="28">
+                            28
+                        </option>
                         <option value="29">29</option>
                         <option value="30">30</option>
                         <option value="31">31</option>

@@ -24,7 +24,7 @@ function Login() {
             if (response.data.name === userName) {
                 alert('Đăng nhập thành công!');
                 console.log(response.data);
-                window.location.href = '/product';
+                window.location.href = '/';
             }
         } catch (error) {
             alert('Sai tài khoản hoặc mật khẩu!');

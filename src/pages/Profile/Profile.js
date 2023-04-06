@@ -27,7 +27,6 @@ function Profile() {
             .get()
             .then((response) => {
                 setDataUser(response.data);
-                console.log('ddddddddd' + response.data);
             });
     }, []);
 

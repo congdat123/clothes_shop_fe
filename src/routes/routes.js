@@ -12,6 +12,7 @@ import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import EditProfile from '~/pages/EditProfile';
 import Cart from '~/pages/Cart';
+import LogOut from '~/pages/Logout';
 
 // Public routes
 const publicRoutes = [
@@ -25,6 +26,7 @@ const publicRoutes = [
     { path: config.routes.register, component: Register },
     { path: config.routes.editProfile, component: EditProfile },
     { path: config.routes.cart, component: Cart },
+    { path: config.routes.logout, component: LogOut },
 ];
 const privateRoutes = [];
 

@@ -9,6 +9,7 @@ const routes = {
     register: 'register',
     editProfile: '/edit/:userId',
     cart: '/cart',
+    logout: '/logout',
 };
 
 export default routes;

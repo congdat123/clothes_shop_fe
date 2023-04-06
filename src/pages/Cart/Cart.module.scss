@@ -91,4 +91,23 @@
 }
 .item-total-action {
     margin-left: 300px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.not-item {
+    h3 {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 3rem;
+        font-weight: 700;
+    }
+}
+.action-to-product {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    color: #c27676;
+    &:hover {
+    }
 }
