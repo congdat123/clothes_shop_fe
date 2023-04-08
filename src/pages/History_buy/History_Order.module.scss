@@ -1,0 +1,58 @@
+.wrapper {
+    margin-top: 20px;
+    font-family: 'ProximaNova';
+    display: flex;
+    flex-wrap: wrap;
+}
+.title {
+    font-size: 4rem;
+    font-weight: 600;
+}
+.bill {
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    background-color: aquamarine;
+    border-radius: 25px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    align-items: center;
+}
+.bill-item {
+    display: flex;
+}
+.item {
+    padding: 10px;
+}
+.item-title {
+    display: flex;
+    font-size: 1.8rem;
+    font-weight: 600;
+    align-content: center;
+    align-items: center;
+}
+.title-content {
+    width: 160px;
+}
+.content {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.item-avatar {
+    height: 200px;
+    width: 200px;
+}
+.item-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.link-to-bill {
+    color: #275985;
+    &:hover {
+        font-size: 2rem;
+        color: brown;
+    }
+}
