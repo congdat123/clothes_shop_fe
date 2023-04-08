@@ -97,11 +97,12 @@
 }
 
 .not-item {
-    h3 {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 3rem;
-        font-weight: 700;
-    }
+    //
+}
+.not-item-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    font-weight: 700;
 }
 .action-to-product {
     margin-top: 40px;
@@ -109,5 +110,69 @@
     justify-content: center;
     color: #c27676;
     &:hover {
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    background-color: #f1e0d7;
+    width: 350px;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.info-title {
+    font-size: 2rem;
+}
+
+.info-user {
+    font-size: 1.8rem;
+}
+.edit {
+    border-radius: 25px;
+    background-color: #f1e0d7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+.form-edit {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 420px;
+}
+.icon-back {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.form-edit-content {
+    padding: 20px;
+}
+.edit-input {
+    width: 700px;
+}
+.btn-edit {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    align-content: center;
+    align-items: center;
+    &:hover {
+        cursor: pointer;
+        // background-color: #efdad2;
+    }
+}
+.btn-edit-name {
+    padding: 10px;
+    width: 100px;
+    border-radius: 25px;
+    &:hover {
+        background-color: #dbb5a6;
     }
 }

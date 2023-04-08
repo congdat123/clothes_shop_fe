@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail-bill {
+    display: flex;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+    height: 200px;
+    width: 500px;
+    background-color: antiquewhite;
+    &:hover {
+        height: 220px;
+        width: 520px;
+    }
+}
+
+.avatar {
+    border-radius: 25px;
+    padding: 10px;
+    height: 200px;
+}
+
+.product-right {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.product-name {
+    font-size: 2rem;
+    font-weight: 700;
+}

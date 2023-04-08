@@ -42,7 +42,7 @@ function Product() {
             .then((response) => {
                 setItemPaginations(response.data);
             });
-    });
+    }, [currentPages]);
     // Xử lý phân trang
     useEffect(() => {
         if (currentPages == 1) {

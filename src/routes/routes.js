@@ -13,6 +13,8 @@ import Register from '~/pages/Register';
 import EditProfile from '~/pages/EditProfile';
 import Cart from '~/pages/Cart';
 import LogOut from '~/pages/Logout';
+import History from '~/pages/History_buy';
+import DetailBill from '~/pages/History_buy/DetailBill';
 
 // Public routes
 const publicRoutes = [
@@ -27,6 +29,8 @@ const publicRoutes = [
     { path: config.routes.editProfile, component: EditProfile },
     { path: config.routes.cart, component: Cart },
     { path: config.routes.logout, component: LogOut },
+    { path: config.routes.history, component: History },
+    { path: config.routes.detailBill, component: DetailBill },
 ];
 const privateRoutes = [];
 

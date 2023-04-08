@@ -72,7 +72,7 @@ function Header() {
                 setNumberItem(response.data);
             })
             .catch((error) => console.error(error));
-    });
+    }, [numberItem]);
 
     // Handle login
     const handleMenuChange = (menuItem) => {
@@ -134,7 +134,7 @@ function Header() {
                     {currentUser ? (
                         <>
                             <Link to={config.routes.cart}>
-                                <Tippy delay={(0, 200)} content="Cart" placement="bottom">
+                                <Tippy delay={(0, 200)} content="Giỏ hàng" placement="bottom">
                                     <button className={cx('action-btn')}>
                                         <AiOutlineShoppingCart />
                                         {/* Số lượng đơn hàng trong giỏ hàng */}

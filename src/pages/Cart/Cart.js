@@ -3,6 +3,7 @@ import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
@@ -17,7 +18,19 @@ function Cart() {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
     const [bill, setBill] = useState();
-    const [fullName, setFullName] = useState('');
+    const [hideForm, setHideForm] = useState(false);
+
+    const [dataEdit, setDataEdit] = useState({
+        userId: '',
+        userName: '',
+        password: '',
+        fullName: '',
+        email: '',
+        phone: '',
+        address: '',
+        avatar: '',
+        dayCreated: '',
+    });
     useEffect(() => {
         axios
             .create({
@@ -58,7 +71,20 @@ function Cart() {
             .then((response) => {
                 setDataUser(response.data);
             });
-    });
+    }, [userName]);
+
+    useEffect(() => {
+        dataUser.forEach((obj) => {
+            axios
+                .create({
+                    baseURL: `https://localhost:44387/api/Users/${obj.userId}`,
+                })
+                .get()
+                .then((response) => {
+                    setDataEdit(response.data);
+                });
+        });
+    }, [dataUser]);
 
     const handleDeleteItem = (cartId) => {
         if (window.confirm('Bạn muốn xóa!')) {
@@ -80,6 +106,7 @@ function Cart() {
                     userName: userName,
                     phone: obj.phone,
                     address: obj.address,
+                    avatar: 'https://baabrand.com/wp-content/uploads/2018/12/icon-thiet-ke-linh-vuc-logo-thuong-hieu-thoi-trang-my-pham-lam-dep-spa-baa-brand-1.png',
                     total: total,
                     status: 'Chờ xác nhận',
                 });
@@ -102,6 +129,35 @@ function Cart() {
                 );
             });
         } catch (error) {}
+    };
+
+    const handleClickEdit = () => {
+        setHideForm((hideForm) => !hideForm);
+    };
+
+    function handleChange(e) {
+        const newdataEdit = { ...dataEdit };
+        newdataEdit[e.target.id] = e.target.value;
+        setDataEdit(newdataEdit);
+        console.log(newdataEdit);
+    }
+
+    const handleEdit = (userId) => {
+        axios
+            .put(`https://localhost:44387/api/Users/${userId}`, {
+                userId: dataEdit.userId,
+                userName: dataEdit.userName,
+                password: dataEdit.password,
+                fullName: dataEdit.fullName,
+                email: dataEdit.email,
+                phone: dataEdit.phone,
+                address: dataEdit.address,
+                avatar: dataEdit.avatar,
+                dayCreated: dataEdit.dayCreated,
+            })
+            .then((res) => {
+                console.log(res.dataEdit);
+            });
     };
 
     return (
@@ -147,11 +203,76 @@ function Cart() {
                                     Mua
                                 </div>
                             </div>
+                            <div className={cx('info')}>
+                                <h3 className={cx('info-title')}>Thông tin giao hàng</h3>
+                                {dataUser.map((item) => (
+                                    <div className={cx('info-user')}>
+                                        <div className={cx('info-user')}>Họ và tên: {item.fullName}</div>
+                                        <div className={cx('info-user')}>Địa chỉ: {item.address}</div>
+                                        <div className={cx('info-user')}>Số điện thoại: {item.phone}</div>
+                                        <button onClick={handleClickEdit} className={cx('btn-edit')}>
+                                            <div className={cx('btn-edit-name')}> Chỉnh sửa </div>
+                                        </button>
+                                        {hideForm ? (
+                                            <div className={cx('edit')}>
+                                                <AiOutlineArrowLeft
+                                                    className={cx('icon-back')}
+                                                    onClick={handleClickEdit}
+                                                />
+                                                <form className={cx('form-edit')}>
+                                                    <div className={cx('form-edit-content')}>
+                                                        <label className={cx('name')}>Họ và tên:</label>
+                                                        <input
+                                                            className={cx('edit-input')}
+                                                            onChange={(e) => handleChange(e)}
+                                                            id="fullName"
+                                                            value={dataEdit.fullName}
+                                                            placeholder="Full Name"
+                                                            type="text"
+                                                        ></input>
+                                                    </div>
+                                                    <div className={cx('form-edit-content')}>
+                                                        <label className={cx('name')}>Địa chỉ:</label>
+                                                        <input
+                                                            className={cx('edit-input')}
+                                                            onChange={(e) => handleChange(e)}
+                                                            id="address"
+                                                            value={dataEdit.address}
+                                                            placeholder="Address"
+                                                            type="text"
+                                                        />
+                                                    </div>
+                                                    <div className={cx('form-edit-content')}>
+                                                        <label className={cx('name')}>Số điện thoại:</label>
+                                                        <input
+                                                            className={cx('edit-input')}
+                                                            onChange={(e) => handleChange(e)}
+                                                            id="phone"
+                                                            value={dataEdit.phone}
+                                                            placeholder="Phone"
+                                                            type="text"
+                                                        />
+                                                    </div>
+                                                    <button
+                                                        type="submit"
+                                                        onClick={handleEdit(dataEdit.userId)}
+                                                        className={cx('btn-edit')}
+                                                    >
+                                                        <div className={cx('btn-edit-name')}>Chỉnh sửa</div>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        ) : (
+                                            <p></p>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
                         </p>
                     ) : (
                         <>
                             <div className={cx('not-item')}>
-                                <h3>Bạn chưa có đơn hàng nào!!!</h3>
+                                <h3 className={cx('not-item-title')}>Bạn chưa có đơn hàng nào!!!</h3>
                             </div>
                             <Link to={config.routes.product} className={cx('action-to-product')}>
                                 {' '}

@@ -10,6 +10,8 @@ const routes = {
     editProfile: '/edit/:userId',
     cart: '/cart',
     logout: '/logout',
+    history: '/history/order',
+    detailBill: '/detail/bill/:billId',
 };
 
 export default routes;

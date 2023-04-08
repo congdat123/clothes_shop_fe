@@ -34,8 +34,9 @@
 }
 .slide-item {
     display: flex;
+    margin-top: 30px;
 }
-.each-fide {
+.each-fade {
     height: 60%;
     width: 50%;
 }
@@ -44,12 +45,14 @@
     justify-content: center;
 }
 .caption-slide {
-    width: 50%;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .image-item {
     border-radius: 3%;
-    height: 60%;
-    width: 70%;
+    height: 600px;
 }
 .description-bottom {
     overflow-wrap: break-word;
