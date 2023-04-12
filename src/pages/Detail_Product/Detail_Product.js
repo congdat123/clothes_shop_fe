@@ -7,6 +7,8 @@ import Button from '~/components/Button';
 import config from '~/config';
 
 import styles from './Detail_Product.module.scss';
+import Moment from 'react-moment';
+import ReactStars from 'react-stars';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +20,8 @@ function Detail_Product() {
         size: 28,
         quantity: '1',
     });
+    const [productReviews, setProductReviews] = useState([]);
+    const [comment, setComment] = useState([]);
     const [str, setStr] = useState([]);
     useEffect(() => {
         axios
@@ -35,6 +39,14 @@ function Detail_Product() {
         if (storedData) {
             setUserName(JSON.parse(storedData));
         }
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/ProductReviews/viaProductId?ProductId=${productId}`,
+            })
+            .get()
+            .then((response) => {
+                setProductReviews(response.data);
+            });
     });
 
     function handle(e) {
@@ -88,6 +100,37 @@ function Detail_Product() {
                             </p>
                         ))}
                     </div>
+                </div>
+                <div className={cx('product-review')}>
+                    <div className={cx('description-title')}>Đánh giá</div>
+                    {productReviews.length !== 0 ? (
+                        <div className={cx('review')}>
+                            {productReviews.map((item) => (
+                                <div className={cx('review-item')}>
+                                    <div className={cx('review-left')}>
+                                        <img src={item.avatar} className={cx('avatar')} />
+                                    </div>
+                                    <div className={cx('review-right')}>
+                                        <p className={cx('username')}>{item.userName}</p>
+                                        <ReactStars
+                                            edit={false}
+                                            count={5}
+                                            value={item.star}
+                                            size={16}
+                                            color2={'#ffd700'}
+                                        />
+                                        <Moment format="lll" className={cx('date-rate')}>
+                                            {item.dateRate}
+                                        </Moment>
+                                        <p className={cx('content')}>{item.content}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p>Sản phẩm chưa có đánh giá nào!</p>
+                    )}
+                    {/* <Button outline>Đánh giá sản phẩm</Button> */}
                 </div>
             </div>
             <div className={cx('product-right')}>

@@ -43,7 +43,7 @@ function History() {
         });
     }, []);
 
-    console.log(detailProduct);
+    // console.log(detailProduct);
 
     return (
         <div className={cx('wrapper')}>

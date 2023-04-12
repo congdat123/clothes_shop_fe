@@ -33,9 +33,9 @@ function Login() {
     };
     return (
         <form className={cx('form')} onSubmit={handleSubmit}>
-            <span className={cx('signup')}>Sign In</span>
+            <span className={cx('signup')}>Đăng nhập</span>
             <input
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={(e) => setUserName(e.target.value.replace(/\s/g, ''))}
                 id="userName"
                 value={userName}
                 type="text"
@@ -45,7 +45,7 @@ function Login() {
                 minLength="6"
             />
             <input
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.replace(/\s/g, ''))}
                 id="password"
                 value={password}
                 type="password"

@@ -14,30 +14,44 @@ function Register() {
 
     function handle(e) {
         const newdata = { ...data };
-        newdata[e.target.id] = e.target.value;
+        newdata[e.target.id] = e.target.value.replace(/\s/g, '');
         setData(newdata);
         console.log(newdata);
     }
 
-    const handleAdd = () => {
-        axios
-            .post(`https://localhost:44387/api/Account`, {
-                userName: data.userName,
-                password: data.password,
-            })
-            .then((res) => {
-                console.log(res.data);
-            });
+    const handleAdd = async () => {
+        if (data.userName.length < 6) {
+            alert('Tên tài khoảng phải ít nhất 6 kí tự!');
+        }
+        if (data.password.length < 8) {
+            alert('Mật khẩu phải ít nhất 8 kí tự!');
+        }
+        if ((data.userName.length >= 6) & (data.password.length >= 8)) {
+            try {
+                const response = await axios.post(`https://localhost:44387/api/Account`, {
+                    userName: data.userName,
+                    password: data.password,
+                });
+                if (response.data.userName === data.userName) {
+                    alert('Đăng kí thành công!');
+                    window.location.href = '/login';
+                }
+            } catch (error) {
+                alert('Tên tài khoản đã tồn tại!!!');
+                console.log(error);
+            }
+        }
     };
 
     return (
         <form className={cx('form')}>
-            <span className={cx('signup')}>Sign Up</span>
+            <span className={cx('signup')}>Đăng kí</span>
             <input
                 onChange={(e) => handle(e)}
                 id="userName"
                 value={data.userName}
                 type="text"
+                pattern="[a-zA-Z0-9]+$"
                 placeholder="User Name"
                 className={cx('form--input')}
                 autoComplete="off"
@@ -48,6 +62,7 @@ function Register() {
                 id="password"
                 value={data.password}
                 type="password"
+                required
                 placeholder="Password"
                 className={cx('form--input')}
             />

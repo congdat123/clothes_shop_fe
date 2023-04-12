@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     flex-wrap: wrap;
+    font-family: sans-serif;
 }
 
 .detail-bill {
@@ -11,10 +12,6 @@
     height: 200px;
     width: 500px;
     background-color: antiquewhite;
-    &:hover {
-        height: 220px;
-        width: 520px;
-    }
 }
 
 .avatar {
@@ -32,4 +29,88 @@
 .product-name {
     font-size: 2rem;
     font-weight: 700;
+}
+
+.btn-rate {
+    width: 200px;
+    // align-self: center;
+}
+.rate-form {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+    max-height: 100%;
+    max-width: 100%;
+    z-index: 11;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 800px;
+    padding: 30px;
+    // margin-left: auto;
+    // margin-right: auto;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+.form-title {
+    font-size: 3rem;
+    font-weight: 400;
+}
+.product-content {
+    display: flex;
+    padding: 20px 20px 20px 0px;
+}
+.product-avatar {
+    height: 120px;
+    border-radius: 5px;
+}
+.form-product-name {
+    margin-left: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.form-product-rate {
+    display: flex;
+    align-items: center;
+}
+.form-rate-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-right: 40px;
+}
+
+.star {
+    border: 2px solid red;
+}
+
+.form-rate-input {
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.form-rate-input::placeholder {
+    font-size: 2rem;
+    color: gray;
+}
+
+.btn-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.btn-back {
+    margin-right: 10px;
+    background: transparent;
+    font-weight: 100;
+    &:hover {
+        background-color: white;
+        // color: white;
+    }
 }

@@ -61,7 +61,7 @@ function Header() {
             .then((response) => {
                 setItems(response.data);
             });
-    }, [userName]);
+    });
     useEffect(() => {
         axios
             .create({
@@ -157,6 +157,7 @@ function Header() {
                                     <Image src={item.avatar} className={cx('user-avatar')} alt="Nguyen Van A" />
                                 </Menu>
                             ))}
+                            <p className={cx('user-name')}>{userName}</p>
                         </>
                     ) : (
                         <Menu items={MENU_ITEMS}>

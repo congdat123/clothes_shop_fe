@@ -61,8 +61,9 @@ function Cart() {
                 setTotal(response.data.reduce((accumulator, item) => accumulator + item.price, 0));
             })
             .catch((error) => console.error(error));
-        // lấy thông tin user qua username
-
+    });
+    // lấy thông tin user qua username
+    useEffect(() => {
         axios
             .create({
                 baseURL: `https://localhost:44387/api/Account/viaUserName?UserName=${userName}`,
@@ -164,7 +165,7 @@ function Cart() {
         <div>
             {currentUser ? (
                 <div className={cx('wrapper')}>
-                    {items.length != 0 ? (
+                    {items.length !== 0 ? (
                         <p>
                             <div className={cx('item-title')}>
                                 <div className={cx('item-title-name')}>Sản phẩm</div>
