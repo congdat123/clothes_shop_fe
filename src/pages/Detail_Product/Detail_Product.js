@@ -9,6 +9,7 @@ import config from '~/config';
 import styles from './Detail_Product.module.scss';
 import Moment from 'react-moment';
 import ReactStars from 'react-stars';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -142,7 +143,10 @@ function Detail_Product() {
                 </div>
                 <div className={cx('product-price')}>
                     Giá:
-                    <p value={dataAddCart.price}> {data.price}đ</p>
+                    <p value={dataAddCart.price}>
+                        {' '}
+                        <Money value={data.price} />
+                    </p>
                 </div>
                 <div className={cx('product-bst')}>
                     <img src={images.bst} />

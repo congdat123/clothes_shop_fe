@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from '~/components/Button/Button';
 import ReactStars from 'react-stars';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -103,7 +104,9 @@ function DetailBill() {
                         <p className={cx('product-name')}>{item.productName}</p>
                         <p className={cx('product-size')}>Size: {item.size}</p>
                         <p className={cx('product-quantity')}>Số lượng: {item.quantity}</p>
-                        <p className={cx('product-price')}>Giá: {item.price}</p>
+                        <p className={cx('product-price')}>
+                            Giá: <Money value={item.price} />
+                        </p>
                         <Button
                             outline
                             className={cx('btn-rate')}

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +73,9 @@ function History() {
                             </div>
                             <div className={cx('item-title')}>
                                 <p className={cx('title-content')}>Tổng giá tiền</p>
-                                <p className={cx('content')}>{item.total}VNĐ</p>
+                                <p className={cx('content')}>
+                                    <Money value={item.total} />
+                                </p>
                             </div>
                             <div className={cx('item-title')}>
                                 <p className={cx('title-content')}>Trạng thái</p>

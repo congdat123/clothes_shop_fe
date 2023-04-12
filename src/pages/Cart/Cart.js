@@ -8,6 +8,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
 import config from '~/config';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -183,7 +184,10 @@ function Cart() {
                                         <div className={cx('item-name')}>
                                             <p>{item.productName}</p>
                                         </div>
-                                        <div className={cx('item-price')}>{item.price}</div>
+                                        <div className={cx('item-price')}>
+                                            {' '}
+                                            <Money value={item.price} />
+                                        </div>
                                         <div className={cx('item-size')}>{item.size}</div>
                                         <div className={cx('item-quantity')}>{item.quantity}</div>
                                         <div className={cx('item-action')}>
@@ -199,7 +203,9 @@ function Cart() {
                             </div>
                             <div className={cx('item-total')}>
                                 <div className={cx('item-total-name')}>Tổng tiền</div>
-                                <div className={cx('item-total-price')}>{total}đ</div>
+                                <div className={cx('item-total-price')}>
+                                    <Money value={total} />
+                                </div>
                                 <div className={cx('item-total-action')} onClick={handleBuyItem}>
                                     Mua
                                 </div>

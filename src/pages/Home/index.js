@@ -7,6 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import styles from './Home.module.scss';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -53,7 +54,9 @@ function Home() {
                                     </div>
                                     <div className={cx('caption-slide')}>
                                         <div className={cx('product-name')}>{item.hotProductName}</div>
-                                        <div className={cx('product-price')}>Giá {item.hpPrice} VNĐ</div>
+                                        <div className={cx('product-price')}>
+                                            Giá <Money value={item.hpPrice} />
+                                        </div>
                                         {/* <div className={cx('product-description')}>
                                             <div className={cx('description-title')}>Đặc tính nổi bậc</div>
                                             <div className={cx('description-bottom')}>{item.hpDescription}</div>

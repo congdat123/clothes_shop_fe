@@ -10,6 +10,7 @@ import { Tab, TabList, TabPanel, Tabs } from '@mui/joy';
 import Search from '~/layouts/components/Search';
 import config from '~/config';
 import { Link } from 'react-router-dom';
+import Money from '~/components/Money/Money';
 // import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 const cx = classNames.bind(styles);
@@ -176,7 +177,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button className={cx('btn-add')} outline>
@@ -203,7 +206,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item1.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item1.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item1.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -226,7 +231,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item2.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item2.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item2.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -249,7 +256,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item3.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item3.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item3.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -272,7 +281,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -295,7 +306,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item5.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item5.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item5.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -318,7 +331,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item6.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item6.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item6.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>
@@ -341,7 +356,9 @@ function Product() {
                                         <h5 className={cx('product-name')}>{item7.productName}</h5>
                                     </div>
                                     <div>
-                                        <p className={cx('product-price')}>{item7.price}đ</p>
+                                        <p className={cx('product-price')}>
+                                            <Money value={item7.price} />
+                                        </p>
                                     </div>
                                     <div>
                                         <Button outline>Thêm</Button>

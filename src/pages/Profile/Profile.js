@@ -10,6 +10,7 @@ import config from '~/config';
 import styles from './Profile.module.scss';
 import Image from '~/components/Image/Image';
 import { Tab, TabList, TabPanel, Tabs } from '@mui/joy';
+import Money from '~/components/Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -118,7 +119,9 @@ function Profile() {
                             <div className={cx('info')}>
                                 <div className={cx('info-title')}>Tổng tiền đã mua:</div>
                                 <div className={cx('info-content')}>
-                                    <p>{total} VNĐ</p>
+                                    <p>
+                                        <Money value={total} />
+                                    </p>
                                 </div>
                             </div>
                         </TabPanel>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Image from '~/components/Image/Image';
 import styles from './ProductItem.module.scss';
+import Money from '../Money/Money';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,9 @@ function ProductItem({ data }) {
                     <span>{data.productName}</span>
                     {/* {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />} */}
                 </h4>
-                <span className={cx('price')}>{data.price}đ</span>
+                <span className={cx('price')}>
+                    <Money value={data.price} />
+                </span>
             </div>
         </Link>
     );
