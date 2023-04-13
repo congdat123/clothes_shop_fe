@@ -1,6 +1,6 @@
 .product {
     display: flex;
-    font-family: 'ProximaNova';
+    font-family: sans-serif;
 }
 
 .product-left {
@@ -136,6 +136,7 @@
     margin-top: 50px;
     font-size: 2rem;
     font-weight: 700;
+    text-transform: uppercase;
 }
 .description-bottom {
     padding-left: 25px;
@@ -157,6 +158,43 @@
         }
     }
 }
+
+.rate-total {
+}
+
+.rate-total-number {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fffbf8;
+    border: 1px solid #f9ede5;
+}
+.top {
+    display: flex;
+    color: #ee4d2d;
+    align-items: baseline;
+}
+.rate-total-number-first {
+    display: flex;
+    align-items: flex-end;
+    font-size: 3rem;
+    margin-right: 5px;
+}
+
+.rate-total-number-last {
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.8rem;
+    margin-right: 5px;
+}
+
+.rate-title {
+    position: absolute;
+    top: -80px;
+    left: 192px;
+    width: 500px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

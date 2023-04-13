@@ -10,6 +10,8 @@ import styles from './Detail_Product.module.scss';
 import Moment from 'react-moment';
 import ReactStars from 'react-stars';
 import Money from '~/components/Money/Money';
+import { Tab, TabList, TabPanel, Tabs } from '@mui/joy';
+import { Rating } from 'react-simple-star-rating';
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +24,19 @@ function Detail_Product() {
         quantity: '1',
     });
     const [productReviews, setProductReviews] = useState([]);
-    const [comment, setComment] = useState([]);
+    const [productReview1Stars, setProductReview1Stars] = useState([]);
+    const [productReview2Stars, setProductReview2Stars] = useState([]);
+    const [productReview3Stars, setProductReview3Stars] = useState([]);
+    const [productReview4Stars, setProductReview4Stars] = useState([]);
+    const [productReview5Stars, setProductReview5Stars] = useState([]);
+    const [totalStart, setTotalStart] = useState(0);
+
+    const [isTabDisabled1, setIsTabDisable1] = useState(false);
+    const [isTabDisabled2, setIsTabDisable2] = useState(false);
+    const [isTabDisabled3, setIsTabDisable3] = useState(false);
+    const [isTabDisabled4, setIsTabDisable4] = useState(false);
+    const [isTabDisabled5, setIsTabDisable5] = useState(false);
+
     const [str, setStr] = useState([]);
     useEffect(() => {
         axios
@@ -40,15 +54,91 @@ function Detail_Product() {
         if (storedData) {
             setUserName(JSON.parse(storedData));
         }
+        const fetchApi = async () => {
+            axios
+                .create({
+                    baseURL: `https://localhost:44387/api/ProductReviews/viaProductId?ProductId=${productId}`,
+                })
+                .get()
+                .then((response) => {
+                    setProductReviews(response.data);
+                    setTotalStart(response.data.reduce((accumulator, item) => accumulator + item.star, 0));
+                });
+        };
+        fetchApi();
+    }, [productId]);
+
+    console.log((totalStart / productReviews.length).toFixed(1));
+    //Lấy đánh giá theo từ loại sao đánh giá
+    useEffect(() => {
         axios
             .create({
-                baseURL: `https://localhost:44387/api/ProductReviews/viaProductId?ProductId=${productId}`,
+                baseURL: `https://localhost:44387/api/ProductReviews/viaStar?Star=1&ProductId=${productId}`,
             })
             .get()
             .then((response) => {
-                setProductReviews(response.data);
+                setProductReview1Stars(response.data);
             });
-    });
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/ProductReviews/viaStar?Star=2&ProductId=${productId}`,
+            })
+            .get()
+            .then((response) => {
+                setProductReview2Stars(response.data);
+            });
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/ProductReviews/viaStar?Star=3&ProductId=${productId}`,
+            })
+            .get()
+            .then((response) => {
+                setProductReview3Stars(response.data);
+            });
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/ProductReviews/viaStar?Star=4&ProductId=${productId}`,
+            })
+            .get()
+            .then((response) => {
+                setProductReview4Stars(response.data);
+            });
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/ProductReviews/viaStar?Star=5&ProductId=${productId}`,
+            })
+            .get()
+            .then((response) => {
+                setProductReview5Stars(response.data);
+            });
+    }, []);
+    // Kiểm tra loại sao đánh giá có hay không
+    useEffect(() => {
+        const checkRate = async () => {
+            if (productReview1Stars.length === 0) {
+                setIsTabDisable1((isTabDisabled1) => !isTabDisabled1);
+            }
+            if (productReview2Stars.length === 0) {
+                setIsTabDisable2((isTabDisabled2) => !isTabDisabled2);
+            }
+            if (productReview3Stars.length === 0) {
+                setIsTabDisable3((isTabDisabled3) => !isTabDisabled3);
+            }
+            if (productReview4Stars.length === 0) {
+                setIsTabDisable4((isTabDisabled4) => !isTabDisabled4);
+            }
+            if (productReview5Stars.length === 0) {
+                setIsTabDisable5((isTabDisabled5) => !isTabDisabled5);
+            }
+        };
+        checkRate();
+    }, [
+        productReview1Stars.length,
+        productReview2Stars.length,
+        productReview3Stars.length,
+        productReview4Stars.length,
+        productReview5Stars.length,
+    ]);
 
     function handle(e) {
         const newdata = { ...dataAddCart };
@@ -56,6 +146,7 @@ function Detail_Product() {
         setDataAddCart(newdata);
         console.log(newdata);
     }
+    // Xử lý thêm vào giỏ hàng
     const handleAddCart = () => {
         axios
             .post(`https://localhost:44387/api/Carts`, {
@@ -103,34 +194,231 @@ function Detail_Product() {
                     </div>
                 </div>
                 <div className={cx('product-review')}>
-                    <div className={cx('description-title')}>Đánh giá</div>
-                    {productReviews.length !== 0 ? (
-                        <div className={cx('review')}>
-                            {productReviews.map((item) => (
-                                <div className={cx('review-item')}>
-                                    <div className={cx('review-left')}>
-                                        <img src={item.avatar} className={cx('avatar')} />
-                                    </div>
-                                    <div className={cx('review-right')}>
-                                        <p className={cx('username')}>{item.userName}</p>
-                                        <ReactStars
-                                            edit={false}
-                                            count={5}
-                                            value={item.star}
-                                            size={16}
-                                            color2={'#ffd700'}
-                                        />
-                                        <Moment format="lll" className={cx('date-rate')}>
-                                            {item.dateRate}
-                                        </Moment>
-                                        <p className={cx('content')}>{item.content}</p>
-                                    </div>
-                                </div>
-                            ))}
+                    <div className={cx('description-title')}>Đánh giá sản phẩm</div>
+                    <div className={cx('rate-total')}>
+                        <div className={cx('rate-total-number')}>
+                            <div className={cx('top')}>
+                                <p className={cx('rate-total-number-first')}>
+                                    {(totalStart / productReviews.length).toFixed(1)}
+                                </p>
+                                <p className={cx('rate-total-number-last')}> trên 5</p>
+                            </div>
+                            <div className={cx('bot')}>
+                                {/* <ReactStars
+                                    edit={false}
+                                    count={5}
+                                    value={(totalStart / productReviews.length).toFixed(1)}
+                                    size={30}
+                                    half={true}
+                                    color2={'red'}
+                                /> */}
+                                <Rating
+                                    initialValue={(totalStart / productReviews.length).toFixed(1)}
+                                    allowFraction={true}
+                                    // allowHover={false}
+                                    // disableFillHover={true}
+                                    fillColor="#ee4d2d"
+                                    size={30}
+                                    readonly={true}
+                                />
+                            </div>
                         </div>
-                    ) : (
-                        <p>Sản phẩm chưa có đánh giá nào!</p>
-                    )}
+                        <Tabs size="lg" defaultValue={0}>
+                            <TabList variant="soft" color="neutral" className={cx('rate-title')}>
+                                <Tab className={cx('rate-filter')}>Tất cả</Tab>
+                                <Tab className={cx('rate-filter')} disabled={isTabDisabled5}>
+                                    5 Sao ({productReview5Stars.length})
+                                </Tab>
+                                <Tab className={cx('rate-filter')} disabled={isTabDisabled4}>
+                                    4 Sao ({productReview4Stars.length})
+                                </Tab>
+                                <Tab className={cx('rate-filter')} disabled={isTabDisabled3}>
+                                    3 Sao ({productReview3Stars.length})
+                                </Tab>
+                                <Tab className={cx('rate-filter')} disabled={isTabDisabled2}>
+                                    2 Sao ({productReview2Stars.length})
+                                </Tab>
+                                <Tab className={cx('rate-filter')} disabled={isTabDisabled1}>
+                                    1 Sao ({productReview1Stars.length})
+                                </Tab>
+                            </TabList>
+                            <TabPanel value={0}>
+                                {productReviews.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReviews.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'#ee4d2d'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào!</p>
+                                )}
+                            </TabPanel>
+                            <TabPanel value={1}>
+                                {productReview5Stars.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReview5Stars.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'red'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào 5 sao</p>
+                                )}
+                            </TabPanel>
+                            <TabPanel value={2}>
+                                {productReview4Stars.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReview4Stars.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'red'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào 4 sao</p>
+                                )}
+                            </TabPanel>
+                            <TabPanel value={3}>
+                                {productReview3Stars.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReview3Stars.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'red'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào 3 sao</p>
+                                )}
+                            </TabPanel>
+                            <TabPanel value={4}>
+                                {productReview2Stars.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReview2Stars.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'red'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào 2 sao</p>
+                                )}
+                            </TabPanel>
+                            <TabPanel value={1}>
+                                {productReview1Stars.length !== 0 ? (
+                                    <div className={cx('review')}>
+                                        {productReview1Stars.map((item) => (
+                                            <div className={cx('review-item')}>
+                                                <div className={cx('review-left')}>
+                                                    <img src={item.avatar} className={cx('avatar')} />
+                                                </div>
+                                                <div className={cx('review-right')}>
+                                                    <p className={cx('username')}>{item.userName}</p>
+                                                    <ReactStars
+                                                        edit={false}
+                                                        count={5}
+                                                        value={item.star}
+                                                        size={16}
+                                                        color2={'red'}
+                                                    />
+                                                    <Moment format="lll" className={cx('date-rate')}>
+                                                        {item.dateRate}
+                                                    </Moment>
+                                                    <p className={cx('content')}>{item.content}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Sản phẩm chưa có đánh giá nào 1 sao</p>
+                                )}
+                            </TabPanel>
+                        </Tabs>
+                    </div>
+
                     {/* <Button outline>Đánh giá sản phẩm</Button> */}
                 </div>
             </div>

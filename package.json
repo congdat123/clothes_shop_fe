@@ -27,6 +27,7 @@
         "react-rating": "^2.0.5",
         "react-router-dom": "^6.4.1",
         "react-scripts": "5.0.1",
+        "react-simple-star-rating": "^5.1.7",
         "react-slideshow-image": "^4.0.5",
         "react-stars": "^2.2.5",
         "react-tab-set": "^1.1.247",
