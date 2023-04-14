@@ -22,27 +22,33 @@ function History() {
     }, []);
 
     useEffect(() => {
-        axios
-            .create({
-                baseURL: `https://localhost:44387/api/Bills/viaUserName?UserName=${userName}`,
-            })
-            .get()
-            .then((response) => {
-                setItem(response.data);
-            });
-    }, [userName]);
-    useEffect(() => {
-        items.forEach((obj) => {
+        const loadAxios = async () => {
             axios
                 .create({
-                    baseURL: `https://localhost:44387/api/CartDetails/SearchBill?BillId=${obj.billId}`,
+                    baseURL: `https://localhost:44387/api/Bills/viaUserName?UserName=${userName}`,
                 })
                 .get()
                 .then((response) => {
-                    setDetailProduct([...detailProduct, response.data]);
+                    setItem(response.data);
                 });
-        });
-    }, []);
+        };
+        loadAxios();
+    }, [userName]);
+    useEffect(() => {
+        const loadAxios = async () => {
+            items.forEach((obj) => {
+                axios
+                    .create({
+                        baseURL: `https://localhost:44387/api/CartDetails/SearchBill?BillId=${obj.billId}`,
+                    })
+                    .get()
+                    .then((response) => {
+                        setDetailProduct([...detailProduct, response.data]);
+                    });
+            });
+        };
+        loadAxios();
+    }, [items, detailProduct]);
 
     // console.log(detailProduct);
 

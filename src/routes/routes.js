@@ -15,6 +15,9 @@ import Cart from '~/pages/Cart';
 import LogOut from '~/pages/Logout';
 import History from '~/pages/History_buy';
 import DetailBill from '~/pages/History_buy/DetailBill';
+import Check_Out from '~/pages/Cart/Check_Out';
+import Oder_Success from '~/pages/Cart/Oder_Success';
+import Payment_Transfer from '~/pages/Cart/Payment_Transfer';
 
 // Public routes
 const publicRoutes = [
@@ -31,6 +34,9 @@ const publicRoutes = [
     { path: config.routes.logout, component: LogOut },
     { path: config.routes.history, component: History },
     { path: config.routes.detailBill, component: DetailBill },
+    { path: config.routes.checkout, component: Check_Out },
+    { path: config.routes.orderSuccess, component: Oder_Success },
+    { path: config.routes.paymentTransfer, component: Payment_Transfer },
 ];
 const privateRoutes = [];
 

@@ -18,7 +18,7 @@ function Cart() {
     const [dataUser, setDataUser] = useState([]);
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
-    const [bill, setBill] = useState();
+    // const [bill, setBill] = useState();
     const [hideForm, setHideForm] = useState(false);
 
     const [dataEdit, setDataEdit] = useState({
@@ -32,16 +32,18 @@ function Cart() {
         avatar: '',
         dayCreated: '',
     });
-    useEffect(() => {
-        axios
-            .create({
-                baseURL: 'https://localhost:44387/api/Bills',
-            })
-            .get()
-            .then((response) => {
-                setBill(response.data.length);
-            });
-    });
+    // Lấy
+    // useEffect(() => {
+    //     axios
+    //         .create({
+    //             baseURL: 'https://localhost:44387/api/Bills',
+    //         })
+    //         .get()
+    //         .then((response) => {
+    //             setBill(response.data.length);
+    //         });
+    // });
+    // Lấy username qua localStorage
     useEffect(() => {
         const storedData = localStorage.getItem('currentUser');
         if (storedData) {
@@ -74,7 +76,7 @@ function Cart() {
                 setDataUser(response.data);
             });
     }, [userName]);
-
+    // Chỉnh sửa thông tin người dùng
     useEffect(() => {
         dataUser.forEach((obj) => {
             axios
@@ -87,7 +89,7 @@ function Cart() {
                 });
         });
     }, [dataUser]);
-
+    // Xóa sản phẩm khỏi giỏ hàng
     const handleDeleteItem = (cartId) => {
         if (window.confirm('Bạn muốn xóa!')) {
             axios.delete(`https://localhost:44387/api/Carts/${cartId}`);
@@ -100,38 +102,38 @@ function Cart() {
         }
     };
 
-    const handleBuyItem = () => {
-        try {
-            dataUser.forEach((obj) => {
-                axios.post(`https://localhost:44387/api/Bills`, {
-                    customerName: obj.fullName,
-                    userName: userName,
-                    phone: obj.phone,
-                    address: obj.address,
-                    avatar: 'https://baabrand.com/wp-content/uploads/2018/12/icon-thiet-ke-linh-vuc-logo-thuong-hieu-thoi-trang-my-pham-lam-dep-spa-baa-brand-1.png',
-                    total: total,
-                    status: 'Chờ xác nhận',
-                });
-            });
-            items.forEach((obj) => {
-                axios.post(`https://localhost:44387/api/CartDetails`, {
-                    productName: obj.productName,
-                    avatar: obj.avatar,
-                    size: obj.size,
-                    quantity: obj.quantity,
-                    price: obj.price,
-                    billId: bill + 1,
-                    productId: obj.productId,
-                });
-                axios.delete(`https://localhost:44387/api/Carts/${obj.cartId}`);
-                setItems(
-                    items.filter((item) => {
-                        return item.cartId !== obj.cartId;
-                    }),
-                );
-            });
-        } catch (error) {}
-    };
+    // const handleBuyItem = () => {
+    //     try {
+    //         dataUser.forEach((obj) => {
+    //             axios.post(`https://localhost:44387/api/Bills`, {
+    //                 customerName: obj.fullName,
+    //                 userName: userName,
+    //                 phone: obj.phone,
+    //                 address: obj.address,
+    //                 avatar: 'https://baabrand.com/wp-content/uploads/2018/12/icon-thiet-ke-linh-vuc-logo-thuong-hieu-thoi-trang-my-pham-lam-dep-spa-baa-brand-1.png',
+    //                 total: total,
+    //                 status: 'Chờ xác nhận',
+    //             });
+    //         });
+    //         items.forEach((obj) => {
+    //             axios.post(`https://localhost:44387/api/CartDetails`, {
+    //                 productName: obj.productName,
+    //                 avatar: obj.avatar,
+    //                 size: obj.size,
+    //                 quantity: obj.quantity,
+    //                 price: obj.price,
+    //                 billId: bill + 1,
+    //                 productId: obj.productId,
+    //             });
+    //             axios.delete(`https://localhost:44387/api/Carts/${obj.cartId}`);
+    //             setItems(
+    //                 items.filter((item) => {
+    //                     return item.cartId !== obj.cartId;
+    //                 }),
+    //             );
+    //         });
+    //     } catch (error) {}
+    // };
 
     const handleClickEdit = () => {
         setHideForm((hideForm) => !hideForm);
@@ -206,74 +208,9 @@ function Cart() {
                                 <div className={cx('item-total-price')}>
                                     <Money value={total} />
                                 </div>
-                                <div className={cx('item-total-action')} onClick={handleBuyItem}>
-                                    Mua
-                                </div>
-                            </div>
-                            <div className={cx('info')}>
-                                <h3 className={cx('info-title')}>Thông tin giao hàng</h3>
-                                {dataUser.map((item) => (
-                                    <div className={cx('info-user')}>
-                                        <div className={cx('info-user')}>Họ và tên: {item.fullName}</div>
-                                        <div className={cx('info-user')}>Địa chỉ: {item.address}</div>
-                                        <div className={cx('info-user')}>Số điện thoại: {item.phone}</div>
-                                        <button onClick={handleClickEdit} className={cx('btn-edit')}>
-                                            <div className={cx('btn-edit-name')}> Chỉnh sửa </div>
-                                        </button>
-                                        {hideForm ? (
-                                            <div className={cx('edit')}>
-                                                <AiOutlineArrowLeft
-                                                    className={cx('icon-back')}
-                                                    onClick={handleClickEdit}
-                                                />
-                                                <form className={cx('form-edit')}>
-                                                    <div className={cx('form-edit-content')}>
-                                                        <label className={cx('name')}>Họ và tên:</label>
-                                                        <input
-                                                            className={cx('edit-input')}
-                                                            onChange={(e) => handleChange(e)}
-                                                            id="fullName"
-                                                            value={dataEdit.fullName}
-                                                            placeholder="Full Name"
-                                                            type="text"
-                                                        ></input>
-                                                    </div>
-                                                    <div className={cx('form-edit-content')}>
-                                                        <label className={cx('name')}>Địa chỉ:</label>
-                                                        <input
-                                                            className={cx('edit-input')}
-                                                            onChange={(e) => handleChange(e)}
-                                                            id="address"
-                                                            value={dataEdit.address}
-                                                            placeholder="Address"
-                                                            type="text"
-                                                        />
-                                                    </div>
-                                                    <div className={cx('form-edit-content')}>
-                                                        <label className={cx('name')}>Số điện thoại:</label>
-                                                        <input
-                                                            className={cx('edit-input')}
-                                                            onChange={(e) => handleChange(e)}
-                                                            id="phone"
-                                                            value={dataEdit.phone}
-                                                            placeholder="Phone"
-                                                            type="text"
-                                                        />
-                                                    </div>
-                                                    <button
-                                                        type="submit"
-                                                        onClick={handleEdit(dataEdit.userId)}
-                                                        className={cx('btn-edit')}
-                                                    >
-                                                        <div className={cx('btn-edit-name')}>Chỉnh sửa</div>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        ) : (
-                                            <p></p>
-                                        )}
-                                    </div>
-                                ))}
+                                <Link to={config.routes.checkout}>
+                                    <div className={cx('item-total-action')} /*onClick={handleBuyItem}*/>Mua</div>
+                                </Link>
                             </div>
                         </p>
                     ) : (

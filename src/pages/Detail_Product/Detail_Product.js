@@ -153,7 +153,7 @@ function Detail_Product() {
                 productId: productId,
                 productName: data.productName,
                 avatar: data.avatar,
-                price: data.price,
+                price: data.price * dataAddCart.quantity,
                 size: dataAddCart.size,
                 quantity: dataAddCart.quantity,
                 userName: userName,

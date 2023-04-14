@@ -67,6 +67,7 @@ function EditProfile() {
                     </div>
                     <div>
                         <input
+                            className={cx('form-input')}
                             onChange={(e) => handle2(e)}
                             id="fullName"
                             value={dataEdit.fullName}
@@ -81,6 +82,7 @@ function EditProfile() {
                     </div>
                     <div>
                         <input
+                            className={cx('form-input')}
                             onChange={(e) => handle2(e)}
                             id="email"
                             value={dataEdit.email}
@@ -95,6 +97,7 @@ function EditProfile() {
                     </div>
                     <div>
                         <input
+                            className={cx('form-input')}
                             onChange={(e) => handle2(e)}
                             id="phone"
                             value={dataEdit.phone}
@@ -109,6 +112,7 @@ function EditProfile() {
                     </div>
                     <div>
                         <input
+                            className={cx('form-input')}
                             onChange={(e) => handle2(e)}
                             id="address"
                             value={dataEdit.address}
@@ -123,6 +127,7 @@ function EditProfile() {
                     </div>
                     <div>
                         <input
+                            className={cx('form-input')}
                             onChange={(e) => handle2(e)}
                             id="avatar"
                             value={dataEdit.avatar}

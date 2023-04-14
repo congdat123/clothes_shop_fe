@@ -61,7 +61,7 @@ function Header() {
             .then((response) => {
                 setItems(response.data);
             });
-    });
+    }, [userName]);
     useEffect(() => {
         axios
             .create({
@@ -72,7 +72,7 @@ function Header() {
                 setNumberItem(response.data);
             })
             .catch((error) => console.error(error));
-    }, [numberItem]);
+    }, [userName]);
 
     // Handle login
     const handleMenuChange = (menuItem) => {

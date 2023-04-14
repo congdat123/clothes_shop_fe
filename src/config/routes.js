@@ -12,6 +12,9 @@ const routes = {
     logout: '/logout',
     history: '/history/order',
     detailBill: '/detail/bill/:billId',
+    checkout: '/checkout',
+    orderSuccess: '/order/success',
+    paymentTransfer: '/payment/transfer',
 };
 
 export default routes;
