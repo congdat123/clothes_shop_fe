@@ -164,320 +164,322 @@ function Detail_Product() {
     };
 
     return (
-        <div className={cx('product')}>
-            <div className={cx('product-left')}>
-                <div className={cx('product-item')}>
-                    <div>
-                        <img className={cx('product-image')} src={data.avatar} value={dataAddCart.avatar} />
-                    </div>
-                    <div>
-                        <img className={cx('product-image')} src={data.img1} />
-                    </div>
-                    <div>
-                        <img className={cx('product-image')} src={data.img2} />
-                    </div>
-                    <div>
-                        <img className={cx('product-image')} src={data.img3} />
-                    </div>
-                    <div>
-                        <img className={cx('product-image')} src={data.img4} />
-                    </div>
-                </div>
-                <div className={cx('product-description')}>
-                    <div className={cx('description-title')}>Đặc tính nổi bậc</div>
-                    <div className={cx('description-bottom')}>
-                        {str.map((item, index) => (
-                            <p className={cx('description-dd')} key={index}>
-                                {item.trim()}
-                            </p>
-                        ))}
-                    </div>
-                </div>
-                <div className={cx('product-review')}>
-                    <div className={cx('description-title')}>Đánh giá sản phẩm</div>
-                    <div className={cx('rate-total')}>
-                        <div className={cx('rate-total-number')}>
-                            <div className={cx('top')}>
-                                <p className={cx('rate-total-number-first')}>
-                                    {(totalStart / productReviews.length).toFixed(1)}
-                                </p>
-                                <p className={cx('rate-total-number-last')}> trên 5</p>
-                            </div>
-                            <div className={cx('bot')}>
-                                {/* <ReactStars
-                                    edit={false}
-                                    count={5}
-                                    value={(totalStart / productReviews.length).toFixed(1)}
-                                    size={30}
-                                    half={true}
-                                    color2={'red'}
-                                /> */}
-                                <Rating
-                                    initialValue={(totalStart / productReviews.length).toFixed(1)}
-                                    allowFraction={true}
-                                    // allowHover={false}
-                                    // disableFillHover={true}
-                                    fillColor="#ee4d2d"
-                                    size={30}
-                                    readonly={true}
-                                />
-                            </div>
+        <div className={cx('wrapper')}>
+            <div className={cx('product')}>
+                <div className={cx('product-left')}>
+                    <div className={cx('product-item')}>
+                        <div>
+                            <img className={cx('product-image')} src={data.avatar} value={dataAddCart.avatar} />
                         </div>
-                        <Tabs size="lg" defaultValue={0}>
-                            <TabList variant="soft" color="neutral" className={cx('rate-title')}>
-                                <Tab className={cx('rate-filter')}>Tất cả</Tab>
-                                <Tab className={cx('rate-filter')} disabled={isTabDisabled5}>
-                                    5 Sao ({productReview5Stars.length})
-                                </Tab>
-                                <Tab className={cx('rate-filter')} disabled={isTabDisabled4}>
-                                    4 Sao ({productReview4Stars.length})
-                                </Tab>
-                                <Tab className={cx('rate-filter')} disabled={isTabDisabled3}>
-                                    3 Sao ({productReview3Stars.length})
-                                </Tab>
-                                <Tab className={cx('rate-filter')} disabled={isTabDisabled2}>
-                                    2 Sao ({productReview2Stars.length})
-                                </Tab>
-                                <Tab className={cx('rate-filter')} disabled={isTabDisabled1}>
-                                    1 Sao ({productReview1Stars.length})
-                                </Tab>
-                            </TabList>
-                            <TabPanel value={0}>
-                                {productReviews.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReviews.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'#ee4d2d'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào!</p>
-                                )}
-                            </TabPanel>
-                            <TabPanel value={1}>
-                                {productReview5Stars.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReview5Stars.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'red'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào 5 sao</p>
-                                )}
-                            </TabPanel>
-                            <TabPanel value={2}>
-                                {productReview4Stars.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReview4Stars.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'red'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào 4 sao</p>
-                                )}
-                            </TabPanel>
-                            <TabPanel value={3}>
-                                {productReview3Stars.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReview3Stars.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'red'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào 3 sao</p>
-                                )}
-                            </TabPanel>
-                            <TabPanel value={4}>
-                                {productReview2Stars.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReview2Stars.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'red'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào 2 sao</p>
-                                )}
-                            </TabPanel>
-                            <TabPanel value={1}>
-                                {productReview1Stars.length !== 0 ? (
-                                    <div className={cx('review')}>
-                                        {productReview1Stars.map((item) => (
-                                            <div className={cx('review-item')}>
-                                                <div className={cx('review-left')}>
-                                                    <img src={item.avatar} className={cx('avatar')} />
-                                                </div>
-                                                <div className={cx('review-right')}>
-                                                    <p className={cx('username')}>{item.userName}</p>
-                                                    <ReactStars
-                                                        edit={false}
-                                                        count={5}
-                                                        value={item.star}
-                                                        size={16}
-                                                        color2={'red'}
-                                                    />
-                                                    <Moment format="lll" className={cx('date-rate')}>
-                                                        {item.dateRate}
-                                                    </Moment>
-                                                    <p className={cx('content')}>{item.content}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p>Sản phẩm chưa có đánh giá nào 1 sao</p>
-                                )}
-                            </TabPanel>
-                        </Tabs>
+                        <div>
+                            <img className={cx('product-image')} src={data.img1} />
+                        </div>
+                        <div>
+                            <img className={cx('product-image')} src={data.img2} />
+                        </div>
+                        <div>
+                            <img className={cx('product-image')} src={data.img3} />
+                        </div>
+                        <div>
+                            <img className={cx('product-image')} src={data.img4} />
+                        </div>
                     </div>
+                    <div className={cx('product-description')}>
+                        <div className={cx('description-title')}>Đặc tính nổi bậc</div>
+                        <div className={cx('description-bottom')}>
+                            {str.map((item, index) => (
+                                <p className={cx('description-dd')} key={index}>
+                                    {item.trim()}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                    <div className={cx('product-review')}>
+                        <div className={cx('description-title')}>Đánh giá sản phẩm</div>
+                        <div className={cx('rate-total')}>
+                            <div className={cx('rate-total-number')}>
+                                <div className={cx('top')}>
+                                    <p className={cx('rate-total-number-first')}>
+                                        {(totalStart / productReviews.length).toFixed(1)}
+                                    </p>
+                                    <p className={cx('rate-total-number-last')}> trên 5</p>
+                                </div>
+                                <div className={cx('bot')}>
+                                    {/* <ReactStars
+                                        edit={false}
+                                        count={5}
+                                        value={(totalStart / productReviews.length).toFixed(1)}
+                                        size={30}
+                                        half={true}
+                                        color2={'red'}
+                                    /> */}
+                                    <Rating
+                                        initialValue={(totalStart / productReviews.length).toFixed(1)}
+                                        allowFraction={true}
+                                        // allowHover={false}
+                                        // disableFillHover={true}
+                                        fillColor="#ee4d2d"
+                                        size={30}
+                                        readonly={true}
+                                    />
+                                </div>
+                            </div>
+                            <Tabs size="lg" defaultValue={0}>
+                                <TabList variant="soft" color="neutral" className={cx('rate-title')}>
+                                    <Tab className={cx('rate-filter')}>Tất cả</Tab>
+                                    <Tab className={cx('rate-filter')} disabled={isTabDisabled5}>
+                                        5 Sao ({productReview5Stars.length})
+                                    </Tab>
+                                    <Tab className={cx('rate-filter')} disabled={isTabDisabled4}>
+                                        4 Sao ({productReview4Stars.length})
+                                    </Tab>
+                                    <Tab className={cx('rate-filter')} disabled={isTabDisabled3}>
+                                        3 Sao ({productReview3Stars.length})
+                                    </Tab>
+                                    <Tab className={cx('rate-filter')} disabled={isTabDisabled2}>
+                                        2 Sao ({productReview2Stars.length})
+                                    </Tab>
+                                    <Tab className={cx('rate-filter')} disabled={isTabDisabled1}>
+                                        1 Sao ({productReview1Stars.length})
+                                    </Tab>
+                                </TabList>
+                                <TabPanel value={0}>
+                                    {productReviews.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReviews.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'#ee4d2d'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào!</p>
+                                    )}
+                                </TabPanel>
+                                <TabPanel value={1}>
+                                    {productReview5Stars.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReview5Stars.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'red'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào 5 sao</p>
+                                    )}
+                                </TabPanel>
+                                <TabPanel value={2}>
+                                    {productReview4Stars.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReview4Stars.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'red'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào 4 sao</p>
+                                    )}
+                                </TabPanel>
+                                <TabPanel value={3}>
+                                    {productReview3Stars.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReview3Stars.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'red'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào 3 sao</p>
+                                    )}
+                                </TabPanel>
+                                <TabPanel value={4}>
+                                    {productReview2Stars.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReview2Stars.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'red'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào 2 sao</p>
+                                    )}
+                                </TabPanel>
+                                <TabPanel value={1}>
+                                    {productReview1Stars.length !== 0 ? (
+                                        <div className={cx('review')}>
+                                            {productReview1Stars.map((item) => (
+                                                <div className={cx('review-item')}>
+                                                    <div className={cx('review-left')}>
+                                                        <img src={item.avatar} className={cx('avatar')} />
+                                                    </div>
+                                                    <div className={cx('review-right')}>
+                                                        <p className={cx('username')}>{item.userName}</p>
+                                                        <ReactStars
+                                                            edit={false}
+                                                            count={5}
+                                                            value={item.star}
+                                                            size={16}
+                                                            color2={'red'}
+                                                        />
+                                                        <Moment format="lll" className={cx('date-rate')}>
+                                                            {item.dateRate}
+                                                        </Moment>
+                                                        <p className={cx('content')}>{item.content}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>Sản phẩm chưa có đánh giá nào 1 sao</p>
+                                    )}
+                                </TabPanel>
+                            </Tabs>
+                        </div>
 
-                    {/* <Button outline>Đánh giá sản phẩm</Button> */}
+                        {/* <Button outline>Đánh giá sản phẩm</Button> */}
+                    </div>
                 </div>
-            </div>
-            <div className={cx('product-right')}>
-                <div className={cx('product-name')}>
-                    <h3 value={dataAddCart.productName}>{data.productName}</h3>
-                </div>
-                <div className={cx('product-instock')}>
-                    <p>Số lượng còn lại: {data.inStocks}</p>
-                </div>
-                <div className={cx('product-price')}>
-                    Giá:
-                    <p value={dataAddCart.price}>
-                        {' '}
-                        <Money value={data.price} />
-                    </p>
-                </div>
-                <div className={cx('product-bst')}>
-                    <img src={images.bst} />
-                </div>
-                <div className={cx('product-size')}>
-                    Size:
-                    <select
-                        onChange={(e) => {
-                            handle(e);
-                        }}
-                        id="size"
-                        value={dataAddCart.size}
-                    >
-                        <option selected value="28">
-                            28
-                        </option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                        <option value="32">32</option>
-                    </select>
-                </div>
-                <div className={cx('product-quantity')}>
-                    Số lượng:
-                    {/* <input value="total" type="number"></input> */}
-                    <input
-                        onChange={(e) => {
-                            handle(e);
-                        }}
-                        type="number"
-                        placeholder="1"
-                        step="1"
-                        min="1"
-                        id="quantity"
-                        value={dataAddCart.quantity}
-                    />
-                </div>
-                <div className={cx('add-cart')}>
-                    <Link to={config.routes.cart}>
-                        <Button className={cx('btn-add')} outline onClick={handleAddCart}>
-                            Thêm vào giỏ hàng
-                        </Button>
-                    </Link>
+                <div className={cx('product-right')}>
+                    <div className={cx('product-name')}>
+                        <h3 value={dataAddCart.productName}>{data.productName}</h3>
+                    </div>
+                    <div className={cx('product-instock')}>
+                        <p>Số lượng còn lại: {data.inStocks}</p>
+                    </div>
+                    <div className={cx('product-price')}>
+                        Giá:
+                        <p value={dataAddCart.price}>
+                            {' '}
+                            <Money value={data.price} />
+                        </p>
+                    </div>
+                    <div className={cx('product-bst')}>
+                        <img src={images.bst} />
+                    </div>
+                    <div className={cx('product-size')}>
+                        Size:
+                        <select
+                            onChange={(e) => {
+                                handle(e);
+                            }}
+                            id="size"
+                            value={dataAddCart.size}
+                        >
+                            <option selected value="28">
+                                28
+                            </option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                        </select>
+                    </div>
+                    <div className={cx('product-quantity')}>
+                        Số lượng:
+                        {/* <input value="total" type="number"></input> */}
+                        <input
+                            onChange={(e) => {
+                                handle(e);
+                            }}
+                            type="number"
+                            placeholder="1"
+                            step="1"
+                            min="1"
+                            id="quantity"
+                            value={dataAddCart.quantity}
+                        />
+                    </div>
+                    <div className={cx('add-cart')}>
+                        <Link to={config.routes.cart}>
+                            <Button className={cx('btn-add')} outline onClick={handleAddCart}>
+                                Thêm vào giỏ hàng
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

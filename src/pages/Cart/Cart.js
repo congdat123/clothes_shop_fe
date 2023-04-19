@@ -165,9 +165,9 @@ function Cart() {
     };
 
     return (
-        <div>
+        <div className={cx('wrapper')}>
             {currentUser ? (
-                <div className={cx('wrapper')}>
+                <div className={cx('container')}>
                     {items.length !== 0 ? (
                         <p>
                             <div className={cx('item-title')}>

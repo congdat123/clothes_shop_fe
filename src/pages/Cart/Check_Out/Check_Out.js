@@ -45,35 +45,29 @@ function Check_Out() {
     }, []);
     // lấy thông tin user qua username
     useEffect(() => {
-        const axiosAPI = async () => {
-            axios
-                .create({
-                    baseURL: `https://localhost:44387/api/Account/viaUserName?UserName=${userName}`,
-                })
-                .get()
-                .then((response) => {
-                    setDataUser(response.data);
-                });
-        };
-        axiosAPI();
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/Account/viaUserName?UserName=${userName}`,
+            })
+            .get()
+            .then((response) => {
+                setDataUser(response.data);
+            });
     }, [userName]);
 
     useEffect(() => {
         // lấy giỏ hàng của user qua username
-        const axiosAPI = async () => {
-            axios
-                .create({
-                    baseURL: `https://localhost:44387/api/Carts/viaUserName?UserName=${userName}`,
-                })
-                .get()
-                .then((response) => {
-                    setItems(response.data);
-                    setTotal(response.data.reduce((accumulator, item) => accumulator + item.price, 0));
-                    setTotalProduct(response.data.reduce((accumulator, item) => accumulator + item.quantity, 0));
-                })
-                .catch((error) => console.error(error));
-        };
-        axiosAPI();
+        axios
+            .create({
+                baseURL: `https://localhost:44387/api/Carts/viaUserName?UserName=${userName}`,
+            })
+            .get()
+            .then((response) => {
+                setItems(response.data);
+                setTotal(response.data.reduce((accumulator, item) => accumulator + item.price, 0));
+                setTotalProduct(response.data.reduce((accumulator, item) => accumulator + item.quantity, 0));
+            })
+            .catch((error) => console.error(error));
     });
 
     // console.log(totalProduct);
@@ -140,7 +134,7 @@ function Check_Out() {
             });
     });
 
-    // Xử lý thanh toán sau khi nhận hàng
+    // Xử lý thanh toán sau khi đặt hàng
     const handlePaymentMoneySubmit = () => {
         try {
             dataUser.forEach((obj) => {
@@ -154,25 +148,29 @@ function Check_Out() {
                     status: 'Chờ xác nhận',
                 });
             });
-            items.forEach((obj) => {
-                axios.post(`https://localhost:44387/api/CartDetails`, {
-                    productName: obj.productName,
-                    avatar: obj.avatar,
-                    size: obj.size,
-                    quantity: obj.quantity,
-                    price: obj.price,
-                    billId: bill + 1,
-                    productId: obj.productId,
-                });
-                axios.delete(`https://localhost:44387/api/Carts/${obj.cartId}`);
-                setItems(
-                    items.filter((item) => {
-                        return item.cartId !== obj.cartId;
-                    }),
-                );
-            });
+            handleAfterPayment();
         } catch (error) {}
     };
+    function handleAfterPayment() {
+        items.forEach((obj) => {
+            axios.post(`https://localhost:44387/api/CartDetails`, {
+                productName: obj.productName,
+                avatar: obj.avatar,
+                size: obj.size,
+                quantity: obj.quantity,
+                price: obj.price,
+                billId: bill + 1,
+                productId: obj.productId,
+            });
+            axios.delete(`https://localhost:44387/api/Carts/${obj.cartId}`);
+            setItems(
+                items.filter((item) => {
+                    return item.cartId !== obj.cartId;
+                }),
+            );
+            console.log('Done');
+        });
+    }
     const handlePaymentTransferSubmit = () => {};
     return (
         <div className={cx('wrapper')}>

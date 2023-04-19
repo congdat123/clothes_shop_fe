@@ -1,6 +1,16 @@
 .wrapper {
-    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 806px;
+    width: 100%;
+    left: 0;
+    background-color: var(--white);
     font-family: 'ProximaNova';
+}
+.container {
+    padding-top: 30px;
+    width: 1150px;
 }
 
 .item-title {

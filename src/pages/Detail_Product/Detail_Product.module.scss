@@ -1,6 +1,12 @@
+.wrapper {
+    position: absolute;
+    width: 100%;
+    background-color: var(--white);
+}
 .product {
     display: flex;
     font-family: sans-serif;
+    width: 1150px;
 }
 
 .product-left {

@@ -95,88 +95,90 @@ function DetailBill() {
     }
     return (
         <div className={cx('wrapper')}>
-            {items.map((item) => (
-                <div className={cx('detail-bill')}>
-                    <div className={cx('product-left')}>
-                        <img src={item.avatar} className={cx('avatar')} />
-                    </div>
-                    <div className={cx('product-right')}>
-                        <p className={cx('product-name')}>{item.productName}</p>
-                        <p className={cx('product-size')}>Size: {item.size}</p>
-                        <p className={cx('product-quantity')}>Số lượng: {item.quantity}</p>
-                        <p className={cx('product-price')}>
-                            Giá: <Money value={item.price} />
-                        </p>
-                        <Button
-                            outline
-                            className={cx('btn-rate')}
-                            onClick={() => {
-                                handleRate(item.productId);
-                                handleRate2();
-                            }}
-                        >
-                            Đánh giá
-                        </Button>
-                    </div>
-                </div>
-            ))}
-            {hideFormRate ? (
-                <div className={cx('rate-form')}>
-                    <div className={cx('form')}>
-                        <h2 className={cx('form-title')}>Đánh giá sản phẩm</h2>
-                        <div className={cx('product-content')}>
-                            <img src={itemSelects.avatar} className={cx('product-avatar')} />
-                            <div className={cx('form-product-name')}>{itemSelects.productName}</div>
+            <div className={cx('container')}>
+                {items.map((item) => (
+                    <div className={cx('detail-bill')}>
+                        <div className={cx('product-left')}>
+                            <img src={item.avatar} className={cx('avatar')} />
                         </div>
-                        <p className={cx('form-product-rate')}>
-                            <p className={cx('form-rate-title')}>Chất lượng sản phẩm </p>
-                            <ReactStars
-                                count={5}
-                                value={rating}
-                                onChange={handleRatingChange}
-                                size={40}
-                                color1={'gray'}
-                                color2={'#ffd700'}
-                                half={false}
-                                className={cx('star')}
-                            />
-                            {rating === 1 ? (
-                                <p>Tệ</p>
-                            ) : rating === 2 ? (
-                                <p>Không hài lòng</p>
-                            ) : rating === 3 ? (
-                                <p>Bình thường</p>
-                            ) : rating === 4 ? (
-                                <p>Hài lòng</p>
-                            ) : (
-                                <p>Tuyệt vời</p>
-                            )}
-                        </p>
-                        <input
-                            onChange={(e) => {
-                                handle(e);
-                            }}
-                            id="content"
-                            type="text"
-                            placeholder="Nội dung đánh giá"
-                            value={rate.content}
-                            className={cx('form-rate-input')}
-                        />
-                        <div className={cx('btn-action')}>
-                            <Button onClick={handleRate2} className={cx('btn-back')}>
-                                TRỞ LẠI
+                        <div className={cx('product-right')}>
+                            <p className={cx('product-name')}>{item.productName}</p>
+                            <p className={cx('product-size')}>Size: {item.size}</p>
+                            <p className={cx('product-quantity')}>Số lượng: {item.quantity}</p>
+                            <p className={cx('product-price')}>
+                                Giá: <Money value={item.price} />
+                            </p>
+                            <Button
+                                outline
+                                className={cx('btn-rate')}
+                                onClick={() => {
+                                    handleRate(item.productId);
+                                    handleRate2();
+                                }}
+                            >
+                                Đánh giá
                             </Button>
-                            <Link to={`/detail/${itemSelects.productId}`}>
-                                <Button primary onClick={handleRateSubmit}>
-                                    Hoàn thành
-                                </Button>
-                            </Link>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <></>
-            )}
+                ))}
+                {hideFormRate ? (
+                    <div className={cx('rate-form')}>
+                        <div className={cx('form')}>
+                            <h2 className={cx('form-title')}>Đánh giá sản phẩm</h2>
+                            <div className={cx('product-content')}>
+                                <img src={itemSelects.avatar} className={cx('product-avatar')} />
+                                <div className={cx('form-product-name')}>{itemSelects.productName}</div>
+                            </div>
+                            <p className={cx('form-product-rate')}>
+                                <p className={cx('form-rate-title')}>Chất lượng sản phẩm </p>
+                                <ReactStars
+                                    count={5}
+                                    value={rating}
+                                    onChange={handleRatingChange}
+                                    size={40}
+                                    color1={'gray'}
+                                    color2={'#ffd700'}
+                                    half={false}
+                                    className={cx('star')}
+                                />
+                                {rating === 1 ? (
+                                    <p>Tệ</p>
+                                ) : rating === 2 ? (
+                                    <p>Không hài lòng</p>
+                                ) : rating === 3 ? (
+                                    <p>Bình thường</p>
+                                ) : rating === 4 ? (
+                                    <p>Hài lòng</p>
+                                ) : (
+                                    <p>Tuyệt vời</p>
+                                )}
+                            </p>
+                            <input
+                                onChange={(e) => {
+                                    handle(e);
+                                }}
+                                id="content"
+                                type="text"
+                                placeholder="Nội dung đánh giá"
+                                value={rate.content}
+                                className={cx('form-rate-input')}
+                            />
+                            <div className={cx('btn-action')}>
+                                <Button onClick={handleRate2} className={cx('btn-back')}>
+                                    TRỞ LẠI
+                                </Button>
+                                <Link to={`/detail/${itemSelects.productId}`}>
+                                    <Button primary onClick={handleRateSubmit}>
+                                        Hoàn thành
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )}
+            </div>
         </div>
     );
 }

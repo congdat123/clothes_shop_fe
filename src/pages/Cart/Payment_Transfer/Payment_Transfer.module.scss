@@ -1,0 +1,142 @@
+.wrapper {
+    position: absolute;
+    height: 809px;
+    width: 100%;
+    background: #00000066;
+    left: 0;
+    padding: 20px;
+    font-family: 'Times New Roman';
+}
+
+.container {
+    margin-top: 40px;
+    height: 670px;
+    border-radius: 20px;
+    width: 370px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fffefb;
+}
+
+.header {
+    // height: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    .img-VNPay {
+        height: 50px;
+    }
+}
+
+.title {
+    // z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #fffefb;
+}
+
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-title {
+    font-size: 1.7rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-title-2 {
+    margin-left: 10px;
+}
+.form-input-1 {
+    height: 40px;
+    width: 210px;
+    border-radius: 5px;
+    background-color: #dfdfdf;
+    padding: 10px;
+    transition: border-color 0.5s;
+    outline: none;
+}
+
+.form-input-2 {
+    height: 40px;
+    margin-left: 10px;
+    width: 90%;
+    border-radius: 5px;
+    background-color: #dfdfdf;
+    padding: 10px;
+    transition: border-color 0.5s;
+    outline: none;
+}
+
+.form-title-card {
+    display: flex;
+    font-size: 1.7rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.type-payment {
+    height: 40px;
+    border-radius: 5px;
+    border-color: #cfabab66;
+    padding: 10px;
+    transition: border-color 0.5s;
+    outline: none;
+    &:focus {
+        border-color: #ee4d2d;
+    }
+    &::placeholder {
+        color: #aaaaaa;
+    }
+    &:hover {
+        border-color: #ee4d2d;
+    }
+}
+
+.option-payment {
+    margin-left: 10px;
+}
+
+.form-input {
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #dfdfdf;
+    padding: 10px;
+    transition: border-color 0.5s;
+    outline: none;
+}
+
+.form-input-description {
+    height: 80px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #dfdfdf;
+    padding: 10px;
+    transition: border-color 0.5s;
+    outline: none;
+}
+
+.btn-submit {
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ee4d2d;
+    color: #fffefb;
+    font-size: 1.6rem;
+}

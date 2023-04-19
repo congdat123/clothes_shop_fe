@@ -58,91 +58,94 @@ function EditProfile() {
     }
 
     return (
-        <div className={cx('product')}>
-            <h2 className={cx('item')}>Chỉnh sửa Thông tin người dùng</h2>
-            <form>
-                <div className={cx('form-edit')}>
-                    <div className={cx('name')}>
-                        <label>Full Name:</label>
+        <div className={cx('wrapper')}>
+            <div className={cx('product')}>
+                <h2 className={cx('item')}>Chỉnh sửa Thông tin người dùng</h2>
+                <form>
+                    <div className={cx('form-edit')}>
+                        <div className={cx('name')}>
+                            <label>Họ và tên:</label>
+                        </div>
+                        <div>
+                            <input
+                                className={cx('form-input')}
+                                onChange={(e) => handle2(e)}
+                                id="fullName"
+                                value={dataEdit.fullName}
+                                placeholder="Full Name"
+                                type="text"
+                            ></input>
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            className={cx('form-input')}
-                            onChange={(e) => handle2(e)}
-                            id="fullName"
-                            value={dataEdit.fullName}
-                            placeholder="Full Name"
-                            type="text"
-                        ></input>
+                    <div className={cx('form-edit')}>
+                        <div className={cx('name')}>
+                            <label>Email:</label>
+                        </div>
+                        <div>
+                            <input
+                                className={cx('form-input')}
+                                onChange={(e) => handle2(e)}
+                                id="email"
+                                value={dataEdit.email}
+                                placeholder="Email"
+                                type="text"
+                            ></input>
+                        </div>
                     </div>
-                </div>
-                <div className={cx('form-edit')}>
-                    <div className={cx('name')}>
-                        <label>Email:</label>
+                    <div className={cx('form-edit')}>
+                        <div className={cx('name')}>
+                            <label>Số điện thoại:</label>
+                        </div>
+                        <div>
+                            <input
+                                className={cx('form-input')}
+                                onChange={(e) => handle2(e)}
+                                id="phone"
+                                value={dataEdit.phone}
+                                placeholder="Phone"
+                                type="text"
+                            ></input>
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            className={cx('form-input')}
-                            onChange={(e) => handle2(e)}
-                            id="email"
-                            value={dataEdit.email}
-                            placeholder="Email"
-                            type="text"
-                        ></input>
+                    <div className={cx('form-edit')}>
+                        <div className={cx('name')}>
+                            <label>Địa chỉ:</label>
+                        </div>
+                        <div>
+                            <input
+                                className={cx('form-input')}
+                                onChange={(e) => handle2(e)}
+                                id="address"
+                                value={dataEdit.address}
+                                placeholder="Address"
+                                type="text"
+                            ></input>
+                        </div>
                     </div>
-                </div>
-                <div className={cx('form-edit')}>
-                    <div className={cx('name')}>
-                        <label>Phone:</label>
+                    <div className={cx('form-edit')}>
+                        <div className={cx('name')}>
+                            <label>Ảnh đại diện:</label>
+                        </div>
+                        <div>
+                            <input
+                                className={cx('form-input')}
+                                onChange={(e) => handle2(e)}
+                                id="avatar"
+                                value={dataEdit.avatar}
+                                placeholder="Avatar"
+                                type="text"
+                            ></input>
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            className={cx('form-input')}
-                            onChange={(e) => handle2(e)}
-                            id="phone"
-                            value={dataEdit.phone}
-                            placeholder="Phone"
-                            type="text"
-                        ></input>
-                    </div>
-                </div>
-                <div className={cx('form-edit')}>
-                    <div className={cx('name')}>
-                        <label>Address:</label>
-                    </div>
-                    <div>
-                        <input
-                            className={cx('form-input')}
-                            onChange={(e) => handle2(e)}
-                            id="address"
-                            value={dataEdit.address}
-                            placeholder="Address"
-                            type="text"
-                        ></input>
-                    </div>
-                </div>
-                <div className={cx('form-edit')}>
-                    <div className={cx('name')}>
-                        <label>Avatar:</label>
-                    </div>
-                    <div>
-                        <input
-                            className={cx('form-input')}
-                            onChange={(e) => handle2(e)}
-                            id="avatar"
-                            value={dataEdit.avatar}
-                            placeholder="Avatar"
-                            type="text"
-                        ></input>
-                    </div>
-                </div>
 
-                <Link to={`/profile/${dataEdit.userName}`}>
                     <button onClick={() => handleEdit(dataEdit.userId)} type="submit" className={cx('btn-edit')}>
                         Edit
                     </button>
-                </Link>
-            </form>
+                    <button onClick={() => handleEdit(dataEdit.userId)} type="submit" className={cx('btn-edit')}>
+                        Trở lại
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -1,3 +1,24 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 809px;
+    width: 100%;
+    background-color: #00000066;
+    top: 0;
+    z-index: 2;
+}
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 700px;
+    height: 500px;
+    background-color: var(--white);
+}
 .table {
     text-align: center;
     align-items: center;
@@ -29,7 +50,7 @@
     margin-right: 20px;
     background-color: rgb(247, 243, 239);
     display: inline-block;
-    width: 215px;
+    width: 300px;
     padding: 10px 0 10px 15px;
     font-family: 'Open Sans', sans;
     font-weight: 400;
@@ -92,9 +113,10 @@
 }
 .form-edit {
     display: flex;
+    align-items: baseline;
 }
 .name {
-    width: 200px;
+    width: 100px;
     display: flex;
     align-items: center;
 }

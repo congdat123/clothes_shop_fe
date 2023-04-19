@@ -1,0 +1,40 @@
+.wrapper {
+    font-family: sans-serif;
+    width: 110%;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.header {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.cod,
+.payment {
+    padding: 20px;
+}
+
+.cod-header,
+.payment-header {
+    font-size: 2.2rem;
+}
+.cod-content,
+.payment-content {
+    margin-top: 10px;
+    font-size: 1.7rem;
+}
+
+.payment-ul {
+    margin-top: 10px;
+    list-style: none;
+    margin-bottom: 100px;
+}

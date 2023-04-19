@@ -18,6 +18,9 @@ import DetailBill from '~/pages/History_buy/DetailBill';
 import Check_Out from '~/pages/Cart/Check_Out';
 import Oder_Success from '~/pages/Cart/Oder_Success';
 import Payment_Transfer from '~/pages/Cart/Payment_Transfer';
+import Payment from '~/pages/Policy/Payment';
+import Security from '~/pages/Policy/Security';
+import Shipping from '~/pages/Policy/Shipping';
 
 // Public routes
 const publicRoutes = [
@@ -37,6 +40,9 @@ const publicRoutes = [
     { path: config.routes.checkout, component: Check_Out },
     { path: config.routes.orderSuccess, component: Oder_Success },
     { path: config.routes.paymentTransfer, component: Payment_Transfer },
+    { path: config.routes.policyPayment, component: Payment },
+    { path: config.routes.policySecurity, component: Security },
+    { path: config.routes.policyShipping, component: Shipping },
 ];
 const privateRoutes = [];
 

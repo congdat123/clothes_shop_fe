@@ -1,0 +1,41 @@
+.wrapper {
+    margin-top: 20px;
+    font-family: sans-serif;
+    width: 110%;
+}
+.container {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.title {
+    font-size: 3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.content1 {
+    // margin-top: 10px;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 600;
+}
+.content2 {
+    margin-top: 20px;
+    list-style: decimal;
+}
+.title2 {
+    font-size: 2rem;
+}
+.content3 {
+    list-style: lower-alpha;
+}
+.title3 {
+    margin-top: 10px;
+    font-size: 1.8rem;
+}
+.content4 {
+    list-style: inside;
+}
+.title4 {
+    padding: 10px 0;
+    font-size: 1.4rem;
+}

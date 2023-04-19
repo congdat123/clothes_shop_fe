@@ -15,6 +15,9 @@ const routes = {
     checkout: '/checkout',
     orderSuccess: '/order/success',
     paymentTransfer: '/payment/transfer',
+    policyPayment: '/policy/payment',
+    policySecurity: '/policy/security',
+    policyShipping: '/policy/shipping ',
 };
 
 export default routes;

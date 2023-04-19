@@ -15,8 +15,8 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { MenuItem } from '../Sidebar/Menu';
 import { useEffect } from 'react';
-import Button from '~/components/Button';
 import axios from 'axios';
+import Search from '../Search/Search';
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +72,7 @@ function Header() {
                 setNumberItem(response.data);
             })
             .catch((error) => console.error(error));
-    }, [userName]);
+    });
 
     // Handle login
     const handleMenuChange = (menuItem) => {
@@ -122,13 +122,15 @@ function Header() {
                     <Tippy delay={(0, 200)} content="Product" placement="bottom">
                         <MenuItem title="Product" to={config.routes.product} />
                     </Tippy>
-                    <Tippy delay={(0, 200)} content="About" placement="bottom">
+                    {/* <Tippy delay={(0, 200)} content="About" placement="bottom">
                         <MenuItem title="About" to={config.routes.about} />
-                    </Tippy>
+                    </Tippy> */}
                     <Tippy delay={(0, 200)} content="Contact" placement="bottom">
                         <MenuItem title="Contact" to={config.routes.contact} />
                     </Tippy>
                 </div>
+
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (

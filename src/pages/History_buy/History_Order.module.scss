@@ -1,5 +1,18 @@
 .wrapper {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: flex-start;
+    height: 809px;
+    width: 100%;
+    left: 0;
+    background-color: var(--white);
+}
+
+.container {
     margin-top: 20px;
+    height: auto;
+    width: 1150px;
     font-family: 'ProximaNova';
     display: flex;
     flex-wrap: wrap;
