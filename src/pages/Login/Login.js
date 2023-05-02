@@ -54,12 +54,14 @@ function Login() {
             />
 
             <button className={cx('form--submit')} type="submit">
-                Sign in
+                Đăng nhập
             </button>
 
-            <p>
-                Don't have an account?
-                <a href="./register">Sign Up</a>
+            <p className={cx('sub-aft-login')}>
+                Chưa có tài khoản?
+                <a className={cx('link-to-register')} href="./register">
+                    Đăng kí ngay
+                </a>
             </p>
         </form>
     );

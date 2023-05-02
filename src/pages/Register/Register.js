@@ -9,6 +9,7 @@ const cx = classNames.bind(styles);
 function Register() {
     const [data, setData] = useState({
         userName: '',
+        email: '',
         password: '',
     });
 
@@ -23,23 +24,25 @@ function Register() {
         if (data.userName.length < 6) {
             alert('Tên tài khoảng phải ít nhất 6 kí tự!');
         }
-        if (data.password.length < 8) {
+        if (data.email.length <= 0) {
+            alert('Email không đúng định dạng!');
+        } else if (data.password.length < 8) {
             alert('Mật khẩu phải ít nhất 8 kí tự!');
-        }
-        if ((data.userName.length >= 6) & (data.password.length >= 8)) {
+        } else if ((data.userName.length >= 6) & (data.password.length >= 8)) {
             try {
                 const response = await axios.post(`https://localhost:44387/api/Account`, {
                     userName: data.userName,
+                    email: data.email,
                     password: data.password,
                 });
                 if (response.data.userName === data.userName) {
                     alert('Đăng kí thành công!');
-                    window.location.href = '/login';
                 }
             } catch (error) {
                 alert('Tên tài khoản đã tồn tại!!!');
                 console.log(error);
             }
+            window.location.href = '/login';
         }
     };
 
@@ -59,6 +62,17 @@ function Register() {
             />
             <input
                 onChange={(e) => handle(e)}
+                id="email"
+                value={data.email}
+                type="email"
+                // pattern="[a-zA-Z0-9]+$"
+                placeholder="Email"
+                className={cx('form--input')}
+                autoComplete="off"
+                minLength="6"
+            />
+            <input
+                onChange={(e) => handle(e)}
                 id="password"
                 value={data.password}
                 type="password"
@@ -68,11 +82,13 @@ function Register() {
             />
 
             <button className={cx('form--submit')} onClick={handleAdd}>
-                Sign up
+                Đăng kí
             </button>
-            <p>
-                Have an account?
-                <a href="./login">Sign In</a>
+            <p className={cx('sub-aft-submit')}>
+                Đã có tài khoản?
+                <a className={cx('link-to-login')} href="./login">
+                    Đăng nhập
+                </a>
             </p>
         </form>
     );

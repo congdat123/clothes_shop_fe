@@ -1,0 +1,29 @@
+.wrapper {
+    padding: 20px;
+    display: flex;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+.loader-success {
+    // position: absolute;
+}
+
+.custom-loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #eed6cf 94%, #0000) top/8px 8px no-repeat,
+        conic-gradient(#0000 30%, #eed6cf);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+    100% {
+        transform: rotate(1turn);
+    }
+}

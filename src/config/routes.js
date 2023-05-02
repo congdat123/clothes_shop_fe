@@ -18,6 +18,7 @@ const routes = {
     policyPayment: '/policy/payment',
     policySecurity: '/policy/security',
     policyShipping: '/policy/shipping ',
+    test: '/test',
 };
 
 export default routes;

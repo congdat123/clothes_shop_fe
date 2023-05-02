@@ -52,8 +52,8 @@ function Profile() {
                     setDataEdit(response.data);
                 });
         });
-    });
-    const handleEdit = (userId) => {
+    }, [dataUser]);
+    const handleEdit = async (userId) => {
         axios
             .put(`https://localhost:44387/api/Users/${userId}`, {
                 userId: dataEdit.userId,
@@ -90,7 +90,7 @@ function Profile() {
             });
     }, []);
 
-    const handlefromEdit = () => {
+    const handleFormEdit = () => {
         setHideEditForm((handleEdit) => !handleEdit);
     };
 
@@ -158,7 +158,7 @@ function Profile() {
                                     </div>
                                 </div>
                                 <Link className={cx('btn-edit')}>
-                                    <Button onClick={handlefromEdit}>Edit</Button>
+                                    <Button onClick={handleFormEdit}>Edit</Button>
                                 </Link>
                             </TabPanel>
                             <TabPanel value={1}>
@@ -264,13 +264,13 @@ function Profile() {
 
                             <div className={cx('btn-action')}>
                                 <button
-                                    onClick={() => handleEdit(dataEdit.userId)}
+                                    onClick={handleEdit(dataEdit.userId)}
                                     type="submit"
                                     className={cx('btn-submit')}
                                 >
                                     Edit
                                 </button>
-                                <button onClick={handlefromEdit} type="submit" className={cx('btn-back')}>
+                                <button onClick={handleFormEdit} type="submit" className={cx('btn-back')}>
                                     Trở lại
                                 </button>
                             </div>

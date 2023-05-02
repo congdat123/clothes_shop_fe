@@ -130,7 +130,7 @@ function Check_Out() {
             })
             .get()
             .then((response) => {
-                setBill(response.data.length);
+                setBill(response.data.length + 1);
             });
     });
 
@@ -159,7 +159,7 @@ function Check_Out() {
                 size: obj.size,
                 quantity: obj.quantity,
                 price: obj.price,
-                billId: bill + 1,
+                billId: bill,
                 productId: obj.productId,
             });
             axios.delete(`https://localhost:44387/api/Carts/${obj.cartId}`);

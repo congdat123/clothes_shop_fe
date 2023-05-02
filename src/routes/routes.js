@@ -21,6 +21,7 @@ import Payment_Transfer from '~/pages/Cart/Payment_Transfer';
 import Payment from '~/pages/Policy/Payment';
 import Security from '~/pages/Policy/Security';
 import Shipping from '~/pages/Policy/Shipping';
+import Test from '~/pages/Test';
 
 // Public routes
 const publicRoutes = [
@@ -43,6 +44,7 @@ const publicRoutes = [
     { path: config.routes.policyPayment, component: Payment },
     { path: config.routes.policySecurity, component: Security },
     { path: config.routes.policyShipping, component: Shipping },
+    { path: config.routes.test, component: Test },
 ];
 const privateRoutes = [];
 

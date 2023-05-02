@@ -48,7 +48,8 @@ function Detail_Product() {
                 setData(response.data);
                 setStr(response.data.description.split('.'));
             });
-    }, []);
+    }, [productId]);
+
     useEffect(() => {
         const storedData = localStorage.getItem('username');
         if (storedData) {
